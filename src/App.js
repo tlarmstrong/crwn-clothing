@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
 
-function App() {
+import Directory from './components/directory/directory.component';
+
+// import './categories.styles.scss';
+// initial error loading sass, used npm rebuild node-sass to fix
+
+const App = () => {
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch('https://cdn.fs.teachablecdn.com/jXxMUj86Qf2pChV37EzI')
+      .then((response) => response.json())
+      .then((categories) => setCategories(categories));
+  }, []);
+  console.log(categories);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Directory categories={categories} />
   );
 }
 
