@@ -1,23 +1,25 @@
-import { useState, useEffect } from 'react';
 
-import Directory from './components/directory/directory.component';
+import { Routes, Route } from 'react-router-dom';
+import Navigation from './routes/navigation/navigation.component';
+import Home from './routes/home/home.component';
+import SignIn from './routes/sign-in/sign-in.component';
 
 // import './categories.styles.scss';
 // initial error loading sass, used npm rebuild node-sass to fix
 
+const Shop = () => {
+  return <h1>I am the shop page</h1>
+}
+
 const App = () => {
-
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetch('https://cdn.fs.teachablecdn.com/jXxMUj86Qf2pChV37EzI')
-      .then((response) => response.json())
-      .then((categories) => setCategories(categories));
-  }, []);
-  console.log(categories);
-
   return (
-    <Directory categories={categories} />
+    <Routes>
+      <Route path='/' element={<Navigation />} >
+        <Route index element={<Home />} />
+        <Route path='shop' element={<Shop />} />
+        <Route path='sign-in' element={<SignIn />} />
+      </Route>
+    </Routes>
   );
 }
 
