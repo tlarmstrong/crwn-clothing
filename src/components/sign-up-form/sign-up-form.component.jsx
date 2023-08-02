@@ -22,8 +22,6 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  console.log(formFields);
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   }
@@ -59,7 +57,6 @@ const SignUpForm = () => {
 
     // spread in the object and then set specific field
     setFormFields({ ...formFields, [name]: value });
-    console.log(event);
   };
 
   return (
