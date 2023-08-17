@@ -8,7 +8,6 @@ import Button from '../button/button.component';
 import './product-card.styles.scss';
 
 const ProductCard = ({ product }) => {
-  console.log(product);
   // destructure off the product object
   const { name, price, imageUrl } = product;
   const { addItemToCart } = useContext(CartContext);

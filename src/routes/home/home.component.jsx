@@ -16,7 +16,6 @@ const Home = () => {
       .then((response) => response.json())
       .then((categories) => setCategories(categories));
   }, []);
-  console.log(categories);
 
   return (
     <div>
