@@ -2,8 +2,8 @@
 import { initializeApp } from 'firebase/app';
 import { 
   getAuth, 
-  // signInWithRedirect, 
-  signInWithPopup, 
+  signInWithRedirect, 
+  // signInWithPopup, 
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -42,8 +42,9 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth(); // singleton
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-// export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+// issue with cross-origin (error, although sign-in successful), using redirect instead
+// export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
 

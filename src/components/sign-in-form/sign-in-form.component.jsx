@@ -6,7 +6,8 @@ import Button from '../button/button.component';
 
 import { 
   // auth,  // singleton
-  signInWithGooglePopup,
+  signInWithGoogleRedirect,
+  // signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword
 } from '../../utils/firebase/firebase.utils';
 
@@ -25,10 +26,10 @@ const SignInForm = () => {
     setFormFields(defaultFormFields);
   }
 
-  // sign in with popup
+  // sign in with google
   const signInWithGoogle = async () => {
     try {
-      await signInWithGooglePopup();
+      await signInWithGoogleRedirect();
     } catch (err) {
       console.log('Error!');
     }
@@ -43,7 +44,7 @@ const SignInForm = () => {
     }
 
     try {
-      signInAuthUserWithEmailAndPassword(email, password);
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch(error) {
       switch(error.code) {
