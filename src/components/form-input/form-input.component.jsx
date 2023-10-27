@@ -2,23 +2,21 @@
 // ... = spread in
 // {`${...}`} = string interpolated string
 
-import './form-input.styles.scss';
+import { 
+  Group, 
+  FormInputBox, 
+  FormInputLabel, 
+  FormInputLabelShrink 
+} from './form-input.styles';
 
 const FormInput = ({ label, inputOptions }) => {
+  const InputLabel = inputOptions.value.length ? FormInputLabelShrink : FormInputLabel;
+
   return (
-    <div className="group">
-      <input className="form-input" {...inputOptions} id={inputOptions.name} />
-      {label && (
-        <label 
-          htmlFor={inputOptions.name}
-          className={`${
-            inputOptions.value.length ? 'shrink' : '' 
-          } form-input-label`}
-        >
-          {label}
-        </label>
-      )}
-    </div>
+    <Group>
+      <FormInputBox {...inputOptions} id={inputOptions.name} />
+      {label && (<InputLabel htmlFor={inputOptions.name}>{ label }</InputLabel>)}
+    </Group>
   );
 }
 

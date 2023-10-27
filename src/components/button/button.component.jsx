@@ -1,20 +1,28 @@
 
-import './button.styles.scss';
+import {
+  BaseButton,
+  GoogleButton,
+  InvertedButton
+} from './button.styles';
 
-const BUTTON_TYPE_CLASSES = {
-  google: 'google-sign-in',
+export const BUTTON_TYPE_CLASSES = {
+  google: 'google',
   inverted: 'inverted',
-  default: 'default'
+  base: 'base'
 }
 
+const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) => (
+  {
+    [BUTTON_TYPE_CLASSES.base]: BaseButton,
+    [BUTTON_TYPE_CLASSES.google]: GoogleButton,
+    [BUTTON_TYPE_CLASSES.inverted]: InvertedButton
+  }[buttonType]
+);
+
 const Button = ({ displayText, buttonType, options }) => {
+  const CustomButton = getButton(buttonType);
   return (
-    <button 
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
-      {...options}
-    >
-      {displayText}
-    </button>
+    <CustomButton{...options}>{ displayText }</CustomButton>
   );
 }
 

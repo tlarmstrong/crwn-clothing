@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
+import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component';
 
 import { 
   // auth,  // singleton
@@ -11,7 +11,7 @@ import {
   signInAuthUserWithEmailAndPassword
 } from '../../utils/firebase/firebase.utils';
 
-import './sign-in-form.styles.scss';
+import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
 
 const defaultFormFields = {
   email: '',
@@ -69,7 +69,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit} >
@@ -95,25 +95,25 @@ const SignInForm = () => {
           }}
         />
 
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button
-            buttonType="default"
+            buttonType="base"
             displayText="Sign In"
             inputOptions = {{
               type: "submit",
             }}
           />
           <Button 
-            buttonType="google"
-            displayText="Google Sign in"
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            displayText="Google"
             options = {{
               type: "button",
               onClick: signInWithGoogle
             }}
           />
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 }
 
